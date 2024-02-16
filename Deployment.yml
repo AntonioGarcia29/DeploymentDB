@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: web-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: web
+        image: miapp:v3 # Usa la imagen que has construido para tu aplicación web
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: app-volume
+          mountPath: /usr/src/app
+      volumes:
+      - name: app-volume
+        emptyDir: {}

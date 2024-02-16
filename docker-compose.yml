@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  web:
+    container_name: Web
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    volumes:
+      - .:/usr/src/app
+    logging:
+      driver: none
+
+    
+  mongo:
+    container_name: Mondongo
+    image: mongo:6.0
+    ports:
+      - "27018:27018"
+    logging:
+      driver: none
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
