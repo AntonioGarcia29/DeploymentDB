@@ -17,3 +17,9 @@ para corroborar que se introdujo bien, ingrese solo a "localhost:3000" y se debe
 
 Para que se compruebe que el valor se guarda a pesar de que se apague la BD, se tiene que usar el comando docker compose down
 este comando eliminara los containers, despues volveremos a ejecutar docker compose up, y veremos que los datos siguen ahí.
+
+///////////
+Para la base de datos
+Crearemos una imagen llamada miapp:v3
+crearemos dos namespaces: uno llamado web-namespace y otro llamado mongo-namespace
+ejecutaremos los comandos kubectl apply -f deployment.yml, kubectl apply -f deploymentMongo.yml,kubectl apply -f service.yml,kubectl apply -f serviceDB.yml
