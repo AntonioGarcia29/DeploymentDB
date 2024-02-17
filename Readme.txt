@@ -18,8 +18,26 @@ para corroborar que se introdujo bien, ingrese solo a "localhost:3000" y se debe
 Para que se compruebe que el valor se guarda a pesar de que se apague la BD, se tiene que usar el comando docker compose down
 este comando eliminara los containers, despues volveremos a ejecutar docker compose up, y veremos que los datos siguen ahí.
 
-///////////
-Para la base de datos
-Crearemos una imagen llamada miapp:v3
-crearemos dos namespaces: uno llamado web-namespace y otro llamado mongo-namespace
-ejecutaremos los comandos kubectl apply -f deployment.yml, kubectl apply -f deploymentMongo.yml,kubectl apply -f service.yml,kubectl apply -f serviceDB.yml
+
+Para la practica de deployment con una BD
+
+primero crearemos la imagen con docker build -t "nombre de la imagen": "etiqueta"
+
+ejecutaremos los comandos de 
+docker tag miapp:v1 localhost:5000/miapp:v1
+docker push localhost:5000/miapp:v1
+
+una vez que se haga, crearemos los namespaces con los nombres web, mondongo
+
+ejecutaremos los comandos kubectl port-forward --namespace kube-system service/registry 5000:80
+crearemos otra consola y ejecutaremos otro comando docker run --rm -it --network=host alpine ash -c "apk add socat && socat TCP-LISTEN:5000,reuseaddr,fork TCP:host.docker.internal:5000"
+
+para finalizar en otra consola ejecutaremos los comandos kubctl apply -f "archivos.yml"
+
+una vez ejecutados comprobaremos que se encuentren corriendo con kubectl get pods -n web y respectivamente mondongo
+
+podremos tambien ejecutar el comando kubctl get svc -n web y mondongo
+
+como el paso final ejecutaremos 
+minikube service web-service-d -n web --url
+para que este nos de una ip con la cual acceder a nuestra api
