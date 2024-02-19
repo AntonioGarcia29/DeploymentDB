@@ -15,7 +15,7 @@ router.get('/', async (_req, res) => {
 
 router.get('/crear', async (_req, res) => {
     console.log('creando...')
-    await Animal.create({ tipo: 'Chanchito', estado: 'Feliz' })
+    await Animal.create({ tipo: 'Cerdo', estado: 'Feliz' })
     return res.send('ok')
   })
   

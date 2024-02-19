@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo-d-d
+  name: mongo
   namespace: mondongo
 spec:
   replicas: 1
@@ -17,11 +17,11 @@ spec:
         - name: mongo
           image: mongo:6.0
           ports:
-            - containerPort: 27018
+            - containerPort: 27017
           volumeMounts:
             - name: mongo-data
               mountPath: /data/db
       volumes:
         - name: mongo-data
           persistentVolumeClaim:
-            claimName: mongo-pvc
+            claimName: mongo
