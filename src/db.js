@@ -1,5 +1,15 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://mongo.mondongo.svc.cluster.local:27019/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(db => console.log('Mondongo is connected to ', db.connection.host))
-    .catch(error => console.error('Error connecting to Mondongo:', error));
+// MongoDB connection URL
+ const mongoURI = 'mongodb://mongo.mondongo.svc.cluster.local:27017/mydatabase';
+    
+    // Connect to MongoDB
+    mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+    
+    // Check for successful connection
+    const db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+    db.once('open', () => {
+      console.log('Connected to MongoDB');
+    });
+    
