@@ -25,7 +25,7 @@ primero crearemos la imagen con docker build -t "nombre de la imagen": "etiqueta
 
 ejecutaremos los comandos de 
 docker tag miapp:v1 localhost:5000/miapp:v1
-docker push localhost:5000/miapp:v1
+docker push localhost:5000/miapp:v6
 
 una vez que se haga, crearemos los namespaces con los nombres web, mondongo
 

@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: web
-          image: localhost:5000/miapp:v1
+          image: localhost:5000/miapp:v6
           ports:
-            - containerPort: 8080
+            - containerPort: 3000
