@@ -38,6 +38,7 @@ una vez ejecutados comprobaremos que se encuentren corriendo con kubectl get pod
 
 podremos tambien ejecutar el comando kubctl get svc -n web y mondongo
 
+ejecutaremos un port-forward port-forward -n web service/web-service-d 3000:3000
 como el paso final ejecutaremos 
 minikube service web-service-d -n web --url
 para que este nos de una ip con la cual acceder a nuestra api
